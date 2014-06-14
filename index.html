@@ -189,7 +189,7 @@
 			question["vignette"] = vignette;
 			if (hasSprite) {
 				if ($(".spriteValue").val().length == 0)
-					ErrorMessage("error", "Answers require sprite", $(".spriteValue"));
+					ErrorMessage("error", "Sprite required", $(".spriteValue"));
 				question["sprite"] = {"content": $(".spriteValue").val()};
 			}
 			var answer = new Array();
@@ -211,9 +211,12 @@
 			if (answer.length == 0)
 				ErrorMessage("error", "Question should have at least 2 choices", $(".addAnswer").parent("div"));
 			question["answer"] = answer;
-			if (error)
-				return;
-			$(".output pre code").html(JSON.stringify(question, null, 2));
+			if (error) {
+				$(".output pre code").html("Error occured");
+			}
+			else {
+				$(".output pre code").html(JSON.stringify(question, null, 2));
+			}
 			hljs.highlightBlock($(".output pre code").get(0));
         });
     });
