@@ -26,7 +26,7 @@
 		margin:4px;
 	}
 	.errorMsg {
-		padding:8px;
+		padding:8px 8px 8px 28px;
 		margin:4px;
 	}
 	label {
@@ -36,9 +36,6 @@
 		width:99%;
 		margin:4px;
 		box-sizing:border-box;
-	}
-	.ui-icon {
-		margin:.2em;
 	}
 </style>
 </head>
@@ -127,7 +124,7 @@
                 e.preventDefault();
 				$(this).parent("fieldset").remove();
             });
-			$(".timestamp").first().clone().insertBefore(this).append($delete);
+			$(".timestamp").first().clone().insertBefore($(this).parent("div")).append($delete);
         });
 		$(".addContent").click(function(e) {
 			e.preventDefault();
@@ -135,7 +132,7 @@
                 e.preventDefault();
 				$(this).parent("fieldset").remove();
             });
-            $(".vignette").first().clone().insertBefore(this).append($delete);
+            $(".vignette").first().clone().insertBefore($(this).parent("div")).append($delete);
         });
 		$(".addAnswer").click(function(e) {
             e.preventDefault();
@@ -144,7 +141,7 @@
 				$(this).parent("fieldset").children(".answerType").val("text").trigger("change");
 				$(this).parent("fieldset").remove();
             });
-			$(".answer").first().clone(true).insertBefore(this).append($delete);
+			$(".answer").first().clone(true).insertBefore($(this).parent("div")).append($delete);
         });
 		var hasSprite = false;
 		$(".answerType").change(function(e) {
@@ -163,6 +160,7 @@
         $(".generateBtn").click(function(e) {
             e.preventDefault();
 			$(".errorMsg").remove();
+			error = false;
 			var question = {};
 			if ($(".id").val().length == 0)
 				ErrorMessage("error", "Question ID required", $(".id"));
@@ -223,10 +221,10 @@
 	function ErrorMessage(type, msg, $target) {
 		if (type == "error") {
 			error = true;
-			$("<div></div>").insertAfter($target).addClass("errorMsg ui-state-error ui-corner-all").html(type + ": " + msg).append("<span class='ui-icon ui-icon-alert' style='float: left; margin-right: .3em;'></span>");
+			$("<div></div>").insertAfter($target).addClass("errorMsg ui-state-error ui-corner-all ui-button ui-button-text-icon-primary").html(type + ": " + msg).append("<span class='ui-button-icon-primary ui-icon ui-icon-alert' style='margin-right: .3em;'></span>");
 		}
 		else
-			$("<div></div>").insertAfter($target).addClass("errorMsg ui-state-highlight ui-corner-all").html(type + ": " + msg).append("<span class='ui-icon ui-icon-info' style='float: left; margin-right: .3em;'></span>");
+			$("<div></div>").insertAfter($target).addClass("errorMsg ui-state-highlight ui-corner-all ui-button ui-button-text-icon-primary").html(type + ": " + msg).append("<span class='ui-button-icon-primary ui-icon ui-icon-info' style='margin-right: .3em;'></span>");
 	}
 </script>
 </body>
