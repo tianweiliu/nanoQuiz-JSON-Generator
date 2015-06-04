@@ -116,7 +116,7 @@ $(document).ready(function() {
 		$(".answer").each(function(index, element) {
 			var content = {};
 			content["type"] = $(element).children(".answerType").val();
-			content["correct"] = $(element).children(".correct").is(":checked") ? "true": "false";
+			content["correct"] = $(element).children(".correct").is(":checked") ? true: false;
 			content["content"] = $(element).children(".answerValue").val();
 			if ($(element).children(".answerValue").val().length > 0)
 				answer.push(content);
