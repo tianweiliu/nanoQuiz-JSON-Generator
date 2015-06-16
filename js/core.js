@@ -130,7 +130,7 @@ $(document).ready(function() {
 			$(".output pre code").html("Error occured");
 		}
 		else {
-			$(".output pre code").html(JSON.stringify(question, null, 2));
+			$(".output pre code").html(JSON.stringify(question, null, 2) + ",");
 		}
 		hljs.highlightBlock($(".output pre code").get(0));
 	});
